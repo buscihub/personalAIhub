@@ -12,7 +12,7 @@ Dashboard personale (task, calendario, finanze, abitudini, memoria). Guida di ri
 - Il nome del modello sta in `ANTHROPIC_MODEL`, mai hardcoded oltre al default.
 - Ragionamento esteso OFF sulle chiamate di classificazione. Per le risposte: max_tokens alto e si concatenano tutti i blocchi di testo.
 - Obiettivi: non si azzerano mai da soli. Nel Completo vivono nel log giornaliero alla data fissa convenzionale `2000-01-01` (trucco voluto, non "correggerlo").
-- Numeri: allineati a destra, cifre tabellari, `minimumGroupingDigits: 1` (formattazione in un modulo solo).
+- Numeri: allineati a destra, cifre tabellari, formatter in `lib/format.js` (locale de-DE: raggruppa anche le 4 cifre) (formattazione in un modulo solo).
 - Colore = significato (verde bene, rosso male, arancione cala), non il segno.
 - Rotte dati: `export const dynamic = 'force-dynamic'`; fetch client con `cache: 'no-store'`.
 - Un commit a ogni scheda finita. Una scheda alla volta.

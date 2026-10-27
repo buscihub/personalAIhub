@@ -1,3 +1,4 @@
+import Polso from '../cards/Polso';
 import Obiettivi from '../cards/Obiettivi';
 import Salute from '../cards/Salute';
 import Nutrizione from '../cards/Nutrizione';
@@ -21,15 +22,7 @@ export default function HomeScreen() {
           <li><span>Fattura · Studio B</span><span className="num warn">4 g</span></li>
         </ul>
       </section>
-
-      <section className="card c4" id="polso-finanziario">
-        <h2>Polso finanziario</h2>
-        <div className="big num" style={{ textAlign: 'left' }}>€ 48.230</div>
-        <div className="good num" style={{ textAlign: 'left' }}>+ € 1.240 vs mese scorso</div>
-        <svg className="spark" viewBox="0 0 100 30" preserveAspectRatio="none">
-          <polyline fill="none" stroke="var(--good)" strokeWidth="1.6" points="0,24 15,22 30,20 45,21 60,15 75,12 100,6" />
-        </svg>
-      </section>
+      <Polso />
       <Nutrizione />
       <Salute />
       <Obiettivi />
