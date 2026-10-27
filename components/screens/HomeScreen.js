@@ -1,3 +1,4 @@
+import Abitudini from '../cards/Abitudini';
 import Calendario from '../cards/Calendario';
 import Operator from '../cards/Operator';
 import Session from '../cards/Session';
@@ -8,19 +9,7 @@ export default function HomeScreen() {
       <Operator />
       <Session />
       <Calendario />
-
-      <section className="card c5" id="abitudini">
-        <h2>Abitudini</h2>
-        <div className="row">
-          <div className="ring" style={{ '--p': 62 }}><span className="num">62%</span></div>
-          <div className="habits">
-            <button className="done"><span>Allenamento</span><span>✓</span></button>
-            <button><span>Lettura</span><span className="muted">○</span></button>
-            <button><span>Acqua</span><span className="num">4 / 8</span></button>
-            <button className="done"><span>Deep work</span><span className="num">3 / 3</span></button>
-          </div>
-        </div>
-      </section>
+      <Abitudini />
 
       <section className="card c3" id="blocchi">
         <h2>Blocchi</h2>
