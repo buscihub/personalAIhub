@@ -79,3 +79,9 @@ h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute
 #capturebar input:focus{outline:2px solid var(--accent);outline-offset:1px}
 #capturebar button{border:0;border-radius:12px;padding:0 16px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
 #capturebar button.mic{background:var(--surface-2);color:var(--text)}
+/* ---------- login ---------- */
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.login form{display:grid;gap:12px;width:min(340px,100%)}
+.login input{padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit}
+.login input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.login button{border:0;border-radius:12px;padding:11px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
