@@ -1,3 +1,4 @@
+import Obiettivi from '../cards/Obiettivi';
 import Salute from '../cards/Salute';
 import Nutrizione from '../cards/Nutrizione';
 import Abitudini from '../cards/Abitudini';
@@ -31,23 +32,7 @@ export default function HomeScreen() {
       </section>
       <Nutrizione />
       <Salute />
-
-      <section className="card c6" id="obiettivi-settimana">
-        <h2>Obiettivi · questa settimana</h2>
-        <ul style={{ padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
-          <li>☑ Firmare contratto <span className="pill">fatto</span></li>
-          <li>☐ 3 allenamenti <span className="num muted">2 di 3</span></li>
-          <li>☐ Chiudere preventivo Marco</li>
-        </ul>
-      </section>
-
-      <section className="card c6" id="obiettivi-mese">
-        <h2>Obiettivi · questo mese</h2>
-        <ul style={{ padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
-          <li>☐ Lanciare PersonalOS</li>
-          <li>☐ Perdere 2 kg <span className="num muted">1,2 di 2</span></li>
-        </ul>
-      </section>
+      <Obiettivi />
     </>
   );
 }

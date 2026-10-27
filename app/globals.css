@@ -129,3 +129,10 @@ table.health{width:100%;border-collapse:collapse;margin-top:10px}
 table.health td{padding:6px 4px;border-bottom:1px solid var(--border)}
 table.health .num{width:64px}
 table.health tr.clickable{cursor:pointer}table.health tr.clickable:hover{background:var(--surface-2)}
+/* ---------- obiettivi ---------- */
+ul.goals{list-style:none;padding:0;display:grid;gap:4px;margin-bottom:10px}
+ul.goals li{display:flex;align-items:center;gap:8px;justify-content:space-between;padding:4px 0}
+ul.goals li label{display:flex;gap:8px;align-items:center;flex:1;cursor:pointer}
+ul.goals li.done span{color:var(--muted);text-decoration:line-through}
+ul.goals .rm{opacity:0;float:none}ul.goals li:hover .rm,ul.goals .rm:focus{opacity:1}
+#obiettivi-settimana form input,#obiettivi-mese form input{width:100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit}
