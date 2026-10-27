@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "name": "Federico",
+    "role": "Builder",
+    "city": "—",
+    "focus": "Mettere in piedi PersonalOS",
+    "habits": [
+      { "id": "allenamento", "name": "Allenamento", "type": "check" },
+      { "id": "lettura", "name": "Lettura", "type": "check" },
+      { "id": "acqua", "name": "Acqua", "type": "counter", "target": 8 },
+      { "id": "deep-work", "name": "Deep work", "type": "counter", "target": 3 }
+    ],
+    "calorieGoal": 2200
+  },
+  "tasks": [],
+  "persons": [],
+  "captures": [],
+  "memory": [],
+  "registry": [],
+  "dailyLogs": {}
+}
