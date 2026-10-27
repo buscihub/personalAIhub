@@ -1,3 +1,4 @@
+import Calendario from '../cards/Calendario';
 import Operator from '../cards/Operator';
 import Session from '../cards/Session';
 
@@ -6,18 +7,7 @@ export default function HomeScreen() {
     <>
       <Operator />
       <Session />
-
-      <section className="card c4" id="calendario">
-        <h2>Calendario</h2>
-        <div className="week">
-          {[['L', 26], ['M', 27, true], ['M', 28], ['G', 29], ['V', 30], ['S', 31], ['D', 1]].map(([l, n, t], i) => (
-            <div key={i} className={`day${t ? ' today' : ''}`}>{l}<br /><b>{n}</b></div>
-          ))}
-        </div>
-        <div className="ev"><span className="num muted">09:30</span><span>Standup team</span></div>
-        <div className="ev"><span className="num muted">13:00</span><span>Pranzo con Anna</span></div>
-        <div className="ev"><span className="num muted">17:00</span><span>Call commercialista</span></div>
-      </section>
+      <Calendario />
 
       <section className="card c5" id="abitudini">
         <h2>Abitudini</h2>
