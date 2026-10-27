@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PersonalOS · mockup</title>
+<style>
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --surface-2:#f0f2f5; --border:#e3e6eb;
+  --text:#14171c; --muted:#6b7280; --accent:#2563eb; --accent-soft:#e8f0fe;
+  --good:#16a34a; --bad:#dc2626; --warn:#ea7a12;
+  --hot:#dc2626; --warm:#ea7a12; --cold:#6b7280;
+  --radius:14px; --gap:16px;
+  --font-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f1115;--surface:#171a20;--surface-2:#1e222a;--border:#2a2f39;--text:#e8eaee;--muted:#8b93a1;--accent:#5b8cff;--accent-soft:#1c2740}
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:14px;line-height:1.45;padding-bottom:84px}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right}
+h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+/* ---------- top bar ---------- */
+#topbar{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:20px;padding:10px 20px}
+#topbar .brand{font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+#topbar nav{display:flex;gap:4px;margin-left:12px}
+#topbar nav a{padding:6px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-weight:500}
+#topbar nav a.on{background:var(--accent-soft);color:var(--accent)}
+#topbar .spacer{flex:1}
+#topbar .clock{font-family:var(--font-mono);color:var(--muted)}
+/* ---------- grid ---------- */
+#grid{max-width:1240px;margin:20px auto;padding:0 20px}
+.screen{display:none}.screen.on{display:grid;gap:var(--gap);grid-template-columns:repeat(12,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+@media(max-width:900px){.c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}#topbar nav{display:none}}
+.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}
+.muted{color:var(--muted)}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.pill{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--muted);font-weight:500}
+.pill.hot{background:#fde8e8;color:var(--hot)}.pill.warm{background:#fdf0e1;color:var(--warm)}
+.big{font-size:28px;font-weight:700;letter-spacing:-.02em}
+/* operator + session */
+#operator .big{font-size:22px}
+#session ol{list-style:none;padding:0;display:grid;gap:8px}
+#session li{display:flex;justify-content:space-between;gap:10px;background:var(--surface-2);border-radius:10px;padding:10px 12px;cursor:pointer}
+/* calendario */
+#calendario .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:12px}
+#calendario .day{text-align:center;padding:8px 0;border-radius:10px;background:var(--surface-2);cursor:pointer}
+#calendario .day.today{background:var(--accent);color:#fff}
+#calendario .ev{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)}
+#calendario .ev:last-child{border:0}
+/* abitudini */
+#abitudini .ring{--p:62;width:84px;height:84px;border-radius:50%;background:conic-gradient(var(--good) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center;flex:none}
+#abitudini .ring span{width:64px;height:64px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-weight:700}
+#abitudini .habits{display:grid;gap:6px;flex:1}
+#abitudini button{all:unset;cursor:pointer;display:flex;justify-content:space-between;padding:7px 10px;border-radius:9px;background:var(--surface-2)}
+#abitudini button.done{background:#e6f6ec;color:var(--good)}
+/* blocchi */
+#blocchi li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);list-style:none}
+#blocchi ul{padding:0}
+/* finanze */
+#polso-finanziario .spark{height:40px;width:100%}
+/* nutrizione */
+.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}.bar>i{display:block;height:100%;background:var(--accent)}
+#nutrizione .macro{display:grid;grid-template-columns:70px 1fr 60px;gap:8px;align-items:center;margin-top:8px}
+/* salute */
+#salute .trend{display:flex;align-items:flex-end;gap:3px;height:56px}
+#salute .trend i{flex:1;background:var(--accent);border-radius:3px 3px 0 0;opacity:.8}
+/* obiettivi */
+#obiettivi ul{padding:0;list-style:none;display:grid;gap:6px}
+#obiettivi li{display:flex;gap:8px;align-items:center}
+/* crm */
+.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);grid-column:span 12}
+@media(max-width:900px){.kanban{grid-template-columns:1fr}}
+.col{background:var(--surface-2);border-radius:var(--radius);padding:12px}
+.col h2{display:flex;justify-content:space-between}
+.item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px;margin-top:8px;border-left:3px solid var(--cold)}
+.item.hot{border-left-color:var(--hot)}.item.warm{border-left-color:var(--warm)}
+/* review */
+#review ul{padding-left:18px;display:grid;gap:4px}
+/* capture bar */
+#capturebar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:12px 20px;display:flex;gap:10px;justify-content:center;z-index:6}
+#capturebar .box{display:flex;gap:8px;width:min(720px,100%)}
+#capturebar input{flex:1;padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit}
+#capturebar input:focus{outline:2px solid var(--accent);outline-offset:1px}
+#capturebar button{border:0;border-radius:12px;padding:0 16px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+#capturebar button.mic{background:var(--surface-2);color:var(--text)}
+</style>
+</head>
+<body>
+
+<!-- ============ BARRA IN ALTO (contenitore 1) ============ -->
+<header id="topbar">
+  <div class="brand">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    PersonalOS
+  </div>
+  <nav id="nav">
+    <a href="#home" class="on" data-s="home">Home</a>
+    <a href="#crm" data-s="crm">CRM</a>
+    <a href="#finanze" data-s="finanze">Finanze</a>
+    <a href="#review" data-s="review">Review</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="clock">mar 27 ott · 08:12</div>
+</header>
+
+<!-- ============ GRIGLIA (contenitore 2) ============ -->
+<main id="grid">
+
+  <!-- ===== HOME ===== -->
+  <div class="screen on" id="screen-home">
+
+    <section class="card c4" id="operator">
+      <h2>Operator</h2>
+      <div class="big">Federico</div>
+      <div class="muted">Builder · Milano</div>
+      <div style="margin-top:12px"><span class="pill">Focus di oggi</span></div>
+      <div style="margin-top:6px;font-weight:600">Chiudere il contratto con Marco</div>
+      <div class="muted" style="margin-top:8px">🔥 striscia: <span class="num">12</span> giorni</div>
+    </section>
+
+    <section class="card c4" id="session">
+      <h2>Session</h2>
+      <div class="big">Buongiorno</div>
+      <ol style="margin-top:12px">
+        <li><span>Richiamare commercialista</span><span class="pill hot">in ritardo</span></li>
+        <li><span>Inviare preventivo a Marco</span><span class="pill warm">oggi</span></li>
+        <li><span>Prenotare dentista</span><span class="pill warm">oggi</span></li>
+      </ol>
+    </section>
+
+    <section class="card c4" id="calendario">
+      <h2>Calendario</h2>
+      <div class="week">
+        <div class="day">L<br><b>26</b></div><div class="day today">M<br><b>27</b></div><div class="day">M<br><b>28</b></div>
+        <div class="day">G<br><b>29</b></div><div class="day">V<br><b>30</b></div><div class="day">S<br><b>31</b></div><div class="day">D<br><b>1</b></div>
+      </div>
+      <div class="ev"><span class="num muted">09:30</span><span>Standup team</span></div>
+      <div class="ev"><span class="num muted">13:00</span><span>Pranzo con Anna</span></div>
+      <div class="ev"><span class="num muted">17:00</span><span>Call commercialista</span></div>
+    </section>
+
+    <section class="card c5" id="abitudini">
+      <h2>Abitudini</h2>
+      <div class="row">
+        <div class="ring" style="--p:62"><span class="num">62%</span></div>
+        <div class="habits">
+          <button class="done"><span>Allenamento</span><span>✓</span></button>
+          <button><span>Lettura</span><span class="muted">○</span></button>
+          <button><span>Acqua</span><span class="num">4 / 8</span></button>
+          <button class="done"><span>Deep work</span><span class="num">3 / 3</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card c3" id="blocchi">
+      <h2>Blocchi</h2>
+      <ul>
+        <li><span>Contratto · Marco</span><span class="num bad">9 g</span></li>
+        <li><span>Fattura · Studio B</span><span class="num warn">4 g</span></li>
+      </ul>
+    </section>
+
+    <section class="card c4" id="polso-finanziario">
+      <h2>Polso finanziario</h2>
+      <div class="big num" style="text-align:left">€ 48.230</div>
+      <div class="good num" style="text-align:left">+ € 1.240 vs mese scorso</div>
+      <svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--good)" stroke-width="1.6" points="0,24 15,22 30,20 45,21 60,15 75,12 100,6"/></svg>
+    </section>
+
+    <section class="card c4" id="nutrizione">
+      <h2>Nutrizione</h2>
+      <div class="row between"><span class="big num">1.420</span><span class="muted num">/ 2.200 kcal</span></div>
+      <div class="bar"><i style="width:64%"></i></div>
+      <div class="macro"><span>Proteine</span><div class="bar"><i style="width:70%"></i></div><span class="num">96 g</span></div>
+      <div class="macro"><span>Carbo</span><div class="bar"><i style="width:55%"></i></div><span class="num">150 g</span></div>
+      <div class="macro"><span>Grassi</span><div class="bar"><i style="width:48%"></i></div><span class="num">42 g</span></div>
+    </section>
+
+    <section class="card c4" id="salute">
+      <h2>Salute · 30 giorni</h2>
+      <div class="trend"><i style="height:60%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:80%"></i><i style="height:65%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:72%"></i><i style="height:68%"></i><i style="height:78%"></i><i style="height:62%"></i></div>
+      <div class="muted" style="margin-top:8px">media su <span class="num">22</span> giorni registrati: <span class="num">2.080</span> kcal</div>
+    </section>
+
+    <section class="card c6" id="obiettivi-settimana">
+      <h2>Obiettivi · questa settimana</h2>
+      <ul style="padding:0;list-style:none;display:grid;gap:6px">
+        <li>☑ Firmare contratto <span class="pill">fatto</span></li>
+        <li>☐ 3 allenamenti <span class="num muted">2 di 3</span></li>
+        <li>☐ Chiudere preventivo Marco</li>
+      </ul>
+    </section>
+
+    <section class="card c6" id="obiettivi-mese">
+      <h2>Obiettivi · questo mese</h2>
+      <ul style="padding:0;list-style:none;display:grid;gap:6px">
+        <li>☐ Lanciare PersonalOS</li>
+        <li>☐ Perdere 2 kg <span class="num muted">1,2 di 2</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ===== CRM ===== -->
+  <div class="screen" id="screen-crm">
+    <section class="kanban" id="crm">
+      <div class="col" id="crm-in-ritardo"><h2>In ritardo <span class="num">1</span></h2>
+        <div class="item hot"><b>Richiamare commercialista</b><div class="muted">Studio Rossi</div><span class="pill hot">caldo</span></div></div>
+      <div class="col" id="crm-oggi"><h2>Oggi <span class="num">2</span></h2>
+        <div class="item warm"><b>Inviare preventivo</b><div class="muted">Marco</div><span class="pill warm">tiepido</span></div>
+        <div class="item"><b>Prenotare dentista</b><div class="muted">—</div></div></div>
+      <div class="col" id="crm-settimana"><h2>Questa settimana <span class="num">1</span></h2>
+        <div class="item"><b>Regalo compleanno</b><div class="muted">Anna</div></div></div>
+      <div class="col" id="crm-avanti"><h2>Più avanti <span class="num">1</span></h2>
+        <div class="item"><b>Idea: corso di fotografia</b><div class="muted">—</div></div></div>
+    </section>
+  </div>
+
+  <!-- ===== FINANZE ===== -->
+  <div class="screen" id="screen-finanze">
+    <section class="card c4" id="finanze-patrimonio"><h2>Patrimonio netto</h2><div class="big num" style="text-align:left">€ 48.230</div><div class="muted">agg. 08:05 · EUR</div></section>
+    <section class="card c8" id="finanze-categorie"><h2>Categorie</h2>
+      <table style="width:100%;border-collapse:collapse">
+        <tr><td>Conto corrente</td><td class="muted">liquidità</td><td class="num">€ 12.400</td></tr>
+        <tr><td>ETF</td><td class="muted">investito</td><td class="num">€ 36.800</td></tr>
+        <tr><td>Carta di credito</td><td class="muted">debito</td><td class="num bad">− € 970</td></tr>
+      </table></section>
+    <section class="card c12" id="finanze-storico"><h2>Storico mensile</h2>
+      <table style="width:100%;border-collapse:collapse"><tr class="muted"><td>Mese</td><td class="num">Patrimonio</td><td class="num">Δ</td></tr>
+        <tr><td>Ottobre</td><td class="num">€ 48.230</td><td class="num good">+ 1.240</td></tr>
+        <tr><td>Settembre</td><td class="num">€ 46.990</td><td class="num bad">− 310</td></tr></table></section>
+  </div>
+
+  <!-- ===== REVIEW ===== -->
+  <div class="screen" id="screen-review">
+    <section class="card c6" id="review"><h2>Settimana che si chiude</h2>
+      <b>Andato</b><ul><li>Contratto firmato</li><li>3 allenamenti su 3</li></ul>
+      <b style="display:block;margin-top:10px">Slittato</b><ul><li>Chiamata commercialista</li></ul></section>
+    <section class="card c6" id="review-prossima"><h2>Le tre priorità della prossima</h2>
+      <ol style="padding-left:18px;display:grid;gap:4px"><li>Chiudere preventivo Marco</li><li>Sistemare fatture</li><li>Lanciare PersonalOS</li></ol></section>
+  </div>
+</main>
+
+<!-- ============ BARRA DI CATTURA ============ -->
+<div id="capturebar"><div class="box">
+  <button class="mic" aria-label="Microfono">🎤</button>
+  <input placeholder="Dì o scrivi qualcosa… (a riposo)">
+  <button>Invia</button>
+</div></div>
+
+<script>
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=e=>{
+  e.preventDefault();
+  document.querySelectorAll('#nav a').forEach(x=>x.classList.toggle('on',x===a));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id==='screen-'+a.dataset.s));
+});
+</script>
+</body>
+</html>
