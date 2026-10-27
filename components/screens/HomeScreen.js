@@ -1,3 +1,4 @@
+import Nutrizione from '../cards/Nutrizione';
 import Abitudini from '../cards/Abitudini';
 import Calendario from '../cards/Calendario';
 import Operator from '../cards/Operator';
@@ -27,15 +28,7 @@ export default function HomeScreen() {
           <polyline fill="none" stroke="var(--good)" strokeWidth="1.6" points="0,24 15,22 30,20 45,21 60,15 75,12 100,6" />
         </svg>
       </section>
-
-      <section className="card c4" id="nutrizione">
-        <h2>Nutrizione</h2>
-        <div className="row between"><span className="big num">1.420</span><span className="muted num">/ 2.200 kcal</span></div>
-        <div className="bar"><i style={{ width: '64%' }} /></div>
-        {[['Proteine', 70, '96 g'], ['Carbo', 55, '150 g'], ['Grassi', 48, '42 g']].map(([n, w, v]) => (
-          <div className="macro" key={n}><span>{n}</span><div className="bar"><i style={{ width: `${w}%` }} /></div><span className="num">{v}</span></div>
-        ))}
-      </section>
+      <Nutrizione />
 
       <section className="card c4" id="salute">
         <h2>Salute · 30 giorni</h2>
