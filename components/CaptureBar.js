@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { post, refreshAll } from './useApi';
+import { isQuestion } from '@/lib/question';
 
 const LABEL = { riposo: 'a riposo', ascolto: 'in ascolto', elaboro: 'in elaborazione', fatto: 'fatto' };
 const DEST = {
@@ -15,6 +16,13 @@ export default function CaptureBar() {
   const [msg, setMsg] = useState('');
   const [canListen, setCanListen] = useState(false);
   const rec = useRef(null);
+  const [answer, setAnswer] = useState(null);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setAnswer(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   useEffect(() => {
     setCanListen(Boolean(window.SpeechRecognition || window.webkitSpeechRecognition));
@@ -24,6 +32,17 @@ export default function CaptureBar() {
     const t = value.trim();
     if (!t) return;
     setState('elaboro'); setMsg('');
+    if (isQuestion(t)) {
+      // domanda: invece di archiviare, va alla rotta delle domande
+      try {
+        const res = await fetch('/api/ask', { method: 'POST', cache: 'no-store', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ question: t }) });
+        const d = await res.json();
+        setAnswer({ q: t, text: d.answer || d.error || 'Nessuna risposta.' });
+        setText('');
+      } catch { setAnswer({ q: t, text: 'Risposta non disponibile al momento.' }); }
+      setState('riposo');
+      return;
+    }
     try {
       const r = await post('/api/capture', { text: t });
       setMsg(`→ ${DEST[r.destinazione] || r.destinazione}${r.via === 'regole' ? ' · regole' : ''}`);
@@ -54,6 +73,13 @@ export default function CaptureBar() {
 
   return (
     <div id="capturebar" data-state={state}>
+      {answer && (
+        <div className="answer" role="status">
+          <button className="x" onClick={() => setAnswer(null)} aria-label="Chiudi">✕</button>
+          <div className="muted" style={{ fontSize: 12 }}>{answer.q}</div>
+          <div style={{ whiteSpace: 'pre-wrap' }}>{answer.text}</div>
+        </div>
+      )}
       <div className="box">
         {canListen && (
           <button className={`mic${state === 'ascolto' ? ' live' : ''}`} onClick={toggleMic} aria-label="Microfono">🎤</button>

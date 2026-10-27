@@ -35,6 +35,8 @@ export default function TopBar({ screens, active, onSelect }) {
       </nav>
       <div className="spacer" />
       <Clock />
+      <a className="tb-link" href="/api/admin/export" title="Scarica backup">Backup</a>
+      <button className="tb-link" onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.href = '/login'; }}>Esci</button>
     </header>
   );
 }

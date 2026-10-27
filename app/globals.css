@@ -136,3 +136,8 @@ ul.goals li label{display:flex;gap:8px;align-items:center;flex:1;cursor:pointer}
 ul.goals li.done span{color:var(--muted);text-decoration:line-through}
 ul.goals .rm{opacity:0;float:none}ul.goals li:hover .rm,ul.goals .rm:focus{opacity:1}
 #obiettivi-settimana form input,#obiettivi-mese form input{width:100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit}
+/* ---------- barra: risposta + link in alto ---------- */
+#capturebar{flex-direction:column;align-items:center}
+#capturebar .answer{width:min(720px,100%);max-height:50vh;overflow:auto;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.tb-link{border:0;background:transparent;color:var(--muted);font:inherit;text-decoration:none;cursor:pointer;padding:6px 8px;border-radius:8px}
+.tb-link:hover{background:var(--surface-2)}
