@@ -93,3 +93,26 @@ h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute
 #calendario .ev .num{min-width:52px;text-align:left}
 .nowline{display:flex;align-items:center;gap:8px;color:var(--bad);font-size:12px;margin:4px 0}
 .nowline::after{content:"";flex:1;height:1px;background:var(--bad)}
+/* ---------- CRM ---------- */
+.crm-head{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.crm-head input,.drawer input,.drawer textarea,.drawer select{padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;width:100%}
+.crm-new{flex:1;min-width:200px}.crm-search{flex:2;min-width:260px;display:flex;gap:8px}
+.crm-search button,.seg button,.x{border:0;border-radius:10px;padding:8px 14px;background:var(--surface-2);color:var(--text);font:inherit;cursor:pointer}
+.seg{display:flex;gap:4px;background:var(--surface-2);border-radius:12px;padding:3px}
+.seg button{background:transparent}.seg button.on{background:var(--surface);box-shadow:0 1px 2px #0002}
+.x{background:transparent;padding:2px 8px;float:right}
+.item{cursor:grab}.item.dragging{opacity:.4}
+.item.drop-before{box-shadow:0 -3px 0 0 var(--accent)}
+.col.drop-target{outline:2px dashed var(--accent);outline-offset:-2px}
+.col .empty{padding:12px 0;text-align:center}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.persone{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--gap)}
+.persone .card .item{margin-top:8px}
+.overlay{position:fixed;inset:0;background:#0006;z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);border-left:1px solid var(--border);z-index:21;padding:20px;display:grid;gap:12px;align-content:start;overflow:auto}
+.drawer label{display:grid;gap:4px;color:var(--muted);font-size:12px;font-weight:600}
+.drawer .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.drawer .actions{gap:8px;margin-top:6px}
+.drawer .primary,.drawer .danger{border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;color:#fff}
+.drawer .primary{background:var(--good)}.drawer .danger{background:var(--bad)}
