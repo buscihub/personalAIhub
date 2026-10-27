@@ -17,3 +17,4 @@ Dashboard personale (task, calendario, finanze, abitudini, memoria). Guida di ri
 - Rotte dati: `export const dynamic = 'force-dynamic'`; fetch client con `cache: 'no-store'`.
 - Un commit a ogni scheda finita. Una scheda alla volta.
 - Mai committare `.env*` o `data/personalos.json`.
+- `next.config.mjs`: `cacheComponents` e `partialPrefetching` volutamente spenti (lo scaffold li accende): non riattivarli senza rivedere `force-dynamic`.

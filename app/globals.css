@@ -1,49 +1,81 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --surface-2:#f0f2f5; --border:#e3e6eb;
+  --text:#14171c; --muted:#6b7280; --accent:#2563eb; --accent-soft:#e8f0fe;
+  --good:#16a34a; --bad:#dc2626; --warn:#ea7a12;
+  --hot:#dc2626; --warm:#ea7a12; --cold:#6b7280;
+  --radius:14px; --gap:16px;
+  --font-sans:var(--font-inter),system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:var(--font-jetbrains),ui-monospace,Menlo,monospace;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f1115;--surface:#171a20;--surface-2:#1e222a;--border:#2a2f39;--text:#e8eaee;--muted:#8b93a1;--accent:#5b8cff;--accent-soft:#1c2740}
 }
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:14px;line-height:1.45;padding-bottom:84px}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right}
+h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+/* ---------- top bar ---------- */
+#topbar{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:20px;padding:10px 20px}
+#topbar .brand{font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+#topbar nav{display:flex;gap:4px;margin-left:12px}
+#topbar nav a{padding:6px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-weight:500}
+#topbar nav a.on{background:var(--accent-soft);color:var(--accent)}
+#topbar .spacer{flex:1}
+#topbar .clock{font-family:var(--font-mono);color:var(--muted)}
+/* ---------- grid ---------- */
+#grid{max-width:1240px;margin:20px auto;padding:0 20px}
+.screen{display:none}.screen.on{display:grid;gap:var(--gap);grid-template-columns:repeat(12,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+@media(max-width:900px){.c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}#topbar nav{display:none}}
+.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}
+.muted{color:var(--muted)}.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.pill{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--muted);font-weight:500}
+.pill.hot{background:#fde8e8;color:var(--hot)}.pill.warm{background:#fdf0e1;color:var(--warm)}
+.big{font-size:28px;font-weight:700;letter-spacing:-.02em}
+/* operator + session */
+#operator .big{font-size:22px}
+#session ol{list-style:none;padding:0;display:grid;gap:8px}
+#session li{display:flex;justify-content:space-between;gap:10px;background:var(--surface-2);border-radius:10px;padding:10px 12px;cursor:pointer}
+/* calendario */
+#calendario .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:12px}
+#calendario .day{text-align:center;padding:8px 0;border-radius:10px;background:var(--surface-2);cursor:pointer}
+#calendario .day.today{background:var(--accent);color:#fff}
+#calendario .ev{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)}
+#calendario .ev:last-child{border:0}
+/* abitudini */
+#abitudini .ring{--p:62;width:84px;height:84px;border-radius:50%;background:conic-gradient(var(--good) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center;flex:none}
+#abitudini .ring span{width:64px;height:64px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-weight:700}
+#abitudini .habits{display:grid;gap:6px;flex:1}
+#abitudini button{all:unset;cursor:pointer;display:flex;justify-content:space-between;padding:7px 10px;border-radius:9px;background:var(--surface-2)}
+#abitudini button.done{background:#e6f6ec;color:var(--good)}
+/* blocchi */
+#blocchi li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);list-style:none}
+#blocchi ul{padding:0}
+/* finanze */
+#polso-finanziario .spark{height:40px;width:100%}
+/* nutrizione */
+.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}.bar>i{display:block;height:100%;background:var(--accent)}
+#nutrizione .macro{display:grid;grid-template-columns:70px 1fr 60px;gap:8px;align-items:center;margin-top:8px}
+/* salute */
+#salute .trend{display:flex;align-items:flex-end;gap:3px;height:56px}
+#salute .trend i{flex:1;background:var(--accent);border-radius:3px 3px 0 0;opacity:.8}
+/* obiettivi */
+#obiettivi ul{padding:0;list-style:none;display:grid;gap:6px}
+#obiettivi li{display:flex;gap:8px;align-items:center}
+/* crm */
+.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);grid-column:span 12}
+@media(max-width:900px){.kanban{grid-template-columns:1fr}}
+.col{background:var(--surface-2);border-radius:var(--radius);padding:12px}
+.col h2{display:flex;justify-content:space-between}
+.item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px;margin-top:8px;border-left:3px solid var(--cold)}
+.item.hot{border-left-color:var(--hot)}.item.warm{border-left-color:var(--warm)}
+/* review */
+#review ul{padding-left:18px;display:grid;gap:4px}
+/* capture bar */
+#capturebar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:12px 20px;display:flex;gap:10px;justify-content:center;z-index:6}
+#capturebar .box{display:flex;gap:8px;width:min(720px,100%)}
+#capturebar input{flex:1;padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit}
+#capturebar input:focus{outline:2px solid var(--accent);outline-offset:1px}
+#capturebar button{border:0;border-radius:12px;padding:0 16px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+#capturebar button.mic{background:var(--surface-2);color:var(--text)}
