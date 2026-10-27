@@ -1,3 +1,4 @@
+import Salute from '../cards/Salute';
 import Nutrizione from '../cards/Nutrizione';
 import Abitudini from '../cards/Abitudini';
 import Calendario from '../cards/Calendario';
@@ -29,14 +30,7 @@ export default function HomeScreen() {
         </svg>
       </section>
       <Nutrizione />
-
-      <section className="card c4" id="salute">
-        <h2>Salute · 30 giorni</h2>
-        <div className="trend">
-          {[60, 75, 50, 80, 65, 70, 55, 90, 72, 68, 78, 62].map((h, i) => <i key={i} style={{ height: `${h}%` }} />)}
-        </div>
-        <div className="muted" style={{ marginTop: 8 }}>media su <span className="num">22</span> giorni registrati: <span className="num">2.080</span> kcal</div>
-      </section>
+      <Salute />
 
       <section className="card c6" id="obiettivi-settimana">
         <h2>Obiettivi · questa settimana</h2>
