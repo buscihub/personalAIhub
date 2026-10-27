@@ -88,3 +88,4 @@ h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute
 #capturebar button.mic.live{background:var(--bad);color:#fff}
 #capturebar[data-state="fatto"] input{border-color:var(--good)}
 #capturebar button:disabled{opacity:.6;cursor:default}
+#session ol{margin:12px 0 0}

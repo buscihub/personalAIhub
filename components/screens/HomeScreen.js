@@ -1,24 +1,11 @@
+import Operator from '../cards/Operator';
+import Session from '../cards/Session';
+
 export default function HomeScreen() {
   return (
     <>
-      <section className="card c4" id="operator">
-        <h2>Operator</h2>
-        <div className="big">Federico</div>
-        <div className="muted">Builder · Milano</div>
-        <div style={{ marginTop: 12 }}><span className="pill">Focus di oggi</span></div>
-        <div style={{ marginTop: 6, fontWeight: 600 }}>Chiudere il contratto con Marco</div>
-        <div className="muted" style={{ marginTop: 8 }}>🔥 striscia: <span className="num">12</span> giorni</div>
-      </section>
-
-      <section className="card c4" id="session">
-        <h2>Session</h2>
-        <div className="big">Buongiorno</div>
-        <ol style={{ marginTop: 12 }}>
-          <li><span>Richiamare commercialista</span><span className="pill hot">in ritardo</span></li>
-          <li><span>Inviare preventivo a Marco</span><span className="pill warm">oggi</span></li>
-          <li><span>Prenotare dentista</span><span className="pill warm">oggi</span></li>
-        </ol>
-      </section>
+      <Operator />
+      <Session />
 
       <section className="card c4" id="calendario">
         <h2>Calendario</h2>
