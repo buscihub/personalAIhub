@@ -40,7 +40,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# personalos
-data/personalos.json
+# env (solo il modello va su git)
 .env*
 !.env.example
+
+# documentazione: in locale per default (bozze, CLAUDE.md, diario di studio);
+# su git vanno README e i documenti che officina controlla (design doc, changelog, ADR)
+*.md
+!README.md
+docs/*
+!docs/DESIGN_DOC.md
+!docs/CHANGELOG.md
+!docs/adr/
+!docs/adr/*.md
+study/
