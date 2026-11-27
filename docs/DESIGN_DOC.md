@@ -223,7 +223,7 @@ l'interfaccia.
 |---|---|
 | `anon` | nessuna riga di nessuna tabella; solo la pagina di login |
 | `authenticated` con sessione `aal1` (solo password) | nessuna riga di nessuna tabella: può solo completare la verifica del secondo fattore |
-| `authenticated` con sessione `aal2` (password + TOTP) | solo le proprie righe: `user_id = (select auth.uid())` in `using` e `with check`, per select, insert, update |
+| `authenticated` con sessione `aal2` (password + TOTP) | solo le proprie righe: `user_id = (select auth.uid())` in `using` e `with check`, per select, insert, update e delete (niente delete su `areas`) |
 | `service_role` | bypassa la RLS: solo negli script (import Notion) e nei cron, lato server; mai nel browser né in `NEXT_PUBLIC_*` |
 
 **Come si applica `aal2`.** Su ogni tabella, oltre alle policy di proprietà (permissive), c'è una policy
