@@ -1,0 +1,33 @@
+{
+  "progetto": "Hub personale",
+  "specifica": "docs/DESIGN_DOC.md",
+  "sezioni": {
+    "regole": "docs/DESIGN_DOC.md#2",
+    "modello_dati": "docs/DESIGN_DOC.md#3.3",
+    "sicurezza": "docs/DESIGN_DOC.md#3.4",
+    "fasi": "docs/DESIGN_DOC.md#5",
+    "task": "docs/DESIGN_DOC.md#5.1",
+    "indice_adr": "docs/DESIGN_DOC.md#6",
+    "domande": "docs/DESIGN_DOC.md#7"
+  },
+  "changelog": "docs/CHANGELOG.md",
+  "adr": { "cartella": "docs/adr", "modello": "docs/adr/TEMPLATE.md", "nome": "NNNN-titolo.md" },
+  "codice": ["app/", "lib/", "components/", "scripts/import-notion/"],
+  "check": ["npm run check"],
+  "check_se_tocca": {
+    "supabase/migrations/": ["npm run test:db"]
+  },
+  "nota_check": "`npm run check` esiste dal task 0.2: prima si lancia solo il controllo_docs. `npm run test:db` richiede Docker attivo e `supabase start`.",
+  "controllo_docs": "node scripts/check-task-docs.mjs --strict",
+  "parti_centrali": ["lib/core/time.ts", "supabase/migrations/", "lib/assistant/"],
+  "lingua": { "chat": "italiano", "codice": "inglese", "commit": "inglese", "docs": "italiano" },
+  "git": { "base": "main", "branch": "feat/<id>-<slug>", "commit": "feat(<id>): …", "pr": true },
+  "docs_da_aggiornare": ["README.md"],
+  "studio": { "cartella": "study", "su_git": false },
+  "supabase": {
+    "migrazioni": "supabase/migrations/",
+    "tipi": "lib/db/database.types.ts",
+    "test_rls": "tests/rls/"
+  },
+  "dopo_migrazione": "npm run db:types"
+}
