@@ -100,6 +100,7 @@ raccontare a un colloquio.
 |---|---|---|
 | Framework | **Next.js** (App Router), React | |
 | Linguaggio | **TypeScript** | [ADR-0006](adr/0006-typescript.md); progetto ripartito da zero, [ADR-0005](adr/0005-ripartenza-da-zero.md) |
+| Stile | **Tailwind CSS v4**, token in `app/globals.css` (`@theme`) | [ADR-0007](adr/0007-stile-tailwind.md); shadcn/ui rimandato |
 | Runtime | **Node 26 LTS**, fissato in `engines` e `.nvmrc` | D19; si ripiega su Node 24 solo se una dipendenza è incompatibile |
 | Database | **Supabase** (Postgres + RLS), unica fonte di verità; progetto nuovo, piano Free, regione Francoforte (eu-central-1) | [ADR-0001](adr/0001-supabase-fonte-unica.md); D17 |
 | Autenticazione | Supabase Auth, email personale + password + **secondo fattore TOTP obbligatorio**, un solo utente, registrazioni chiuse | [ADR-0002](adr/0002-login-email-password.md); Google/Apple in futuro (F.1) |
@@ -302,7 +303,7 @@ più avanti (D24).
 
 ## 4. Qualità e test
 
-- **Comando unico:** `npm run check` (lint + typecheck + Vitest), dal task 0.2; deve essere verde a ogni task.
+- **Comando unico:** `npm run check` (lint + typecheck + formattazione Prettier + Vitest), dal task 0.2; deve essere verde a ogni task.
 - **Repository:** test contro un database Supabase locale (`supabase start`, richiede Docker), dati di prova da
   seed; `npm run test:db`.
 - **RLS:** in `tests/rls/`, un secondo utente non vede né modifica le righe del primo, e una sessione `aal1`
@@ -345,9 +346,9 @@ verificato.
 
 **Fase 0 · Fondamenta**
 - [x] 0.1 Adozione del metodo officina: design doc dalle bozze, `.claude/officina.json`, CHANGELOG, ADR delle decisioni motivate, `scripts/check-task-docs.mjs`
-- [ ] 0.2 Scaffold Next.js + TypeScript ("Hub personale"), ESLint, Prettier, Vitest, script `check`; Node 26 LTS in `engines` e `.nvmrc` (aggiornare Node in locale)
+- [x] 0.2 Scaffold Next.js + TypeScript ("Hub personale"), Tailwind CSS v4 (ADR-0007), ESLint, Prettier, Vitest, script `check`; Node 26 LTS in `engines` e `.nvmrc` (aggiornare Node in locale)
 - [ ] 0.3 Supabase: nuovo progetto cloud (piano Free, eu-central-1), CLI, ambiente locale, tipi generati, script `db:types` e `test:db`
-- [ ] 0.4 Login con email + password (Supabase Auth), registrazione pubblica disattivata, reset password via email, sessione che resta attiva su ogni dispositivo, protezione delle pagine
+- [ ] 0.4 Login con email + password (Supabase Auth), registrazione pubblica disattivata, reset password via email, sessione che resta attiva su ogni dispositivo, protezione delle pagine; decisione (ADR) su `cacheComponents`/`partialPrefetching` di Next 16, lasciati spenti nel task 0.2
 - [ ] 0.5 Secondo fattore TOTP obbligatorio (Supabase Auth MFA): registrazione del fattore, richiesta del codice al login, controllo `aal2` su pagine, route handler e server action; test della sessione `aal1` (D23)
 - [ ] 0.6 `lib/core/time.ts` con test; layout (navigazione mobile-first); deploy su Vercel collegato al repo GitHub, dominio `*.vercel.app`
 - **Uscita:** URL pubblico che chiede login e codice TOTP, senza possibilità di registrarsi; il fattore è registrato; una sessione con la sola password non arriva a nessuna pagina; dopo l'accesso, layout vuoto con la navigazione; test di login e secondo fattore verdi; `npm run check` verde.
@@ -431,6 +432,7 @@ routine, collegamento con i giorni di allenamento, strumenti per l'assistente.
 | [0004](adr/0004-import-notion-api.md) | Import una tantum via API di Notion | Integrazione interna con token, solo To-Do, Note, Inbox; routine non importate |
 | [0005](adr/0005-ripartenza-da-zero.md) | Si riparte da zero | Nuovo progetto; il vecchio PersonalOS, mai avviato davvero, resta nella storia git solo come riferimento |
 | [0006](adr/0006-typescript.md) | TypeScript | Tipi dal database all'interfaccia, errori prima dell'esecuzione |
+| [0007](adr/0007-stile-tailwind.md) | Stile con Tailwind CSS v4 | Classi di utilità, token in CSS con `@theme`, riuso tramite componenti; shadcn/ui rimandato |
 
 ## 7. Domande aperte
 

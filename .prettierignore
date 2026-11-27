@@ -1,0 +1,12 @@
+# Generated
+.next/
+next-env.d.ts
+package-lock.json
+lib/db/database.types.ts
+
+# Documentation is formatted by hand (Italian prose, tables)
+*.md
+
+# Officina method files (template from the plugin, kept byte-for-byte)
+.claude/
+scripts/check-task-docs.mjs

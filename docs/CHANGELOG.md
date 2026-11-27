@@ -7,6 +7,20 @@ Una voce per task chiuso: data, task, cosa è cambiato.
 
 ---
 
+## 2026-11-27 — 0.2 Scaffold Next.js e strumenti
+
+- Scaffold Next.js 16.4.6 (App Router) con TypeScript e Tailwind CSS v4: `package.json` (`hub-personale`, `type: module`,
+  `engines` node >=26 <27), `.nvmrc` 26, `app/layout.tsx` (lang `it`, titolo "Hub personale"), `app/page.tsx`
+  segnaposto, `app/globals.css` con token `@theme` provvisori e variante scura (ADR-0007).
+- `next.config.ts`: Tailwind tramite `@tailwindcss/turbopack`; `cacheComponents` e `partialPrefetching` del template
+  lasciati spenti, da decidere nel task 0.4. §4: `check` include anche la formattazione.
+- Strumenti: `eslint.config.mjs` (next core-web-vitals + typescript + eslint-config-prettier), `.prettierrc.json` con
+  `prettier-plugin-tailwindcss`, `.prettierignore`, `vitest.config.ts` (ambiente node).
+- Script `lint`, `typecheck`, `format`, `format:check`, `test`, `test:watch` e `check` (lint, typecheck, format:check, test).
+- Test: `tests/config.test.ts` verifica che `.nvmrc` ed `engines` siano allineati.
+- `.env.example` ridotto ad `ANTHROPIC_API_KEY` e `ANTHROPIC_MODEL`; `.gitignore` senza la riga `.env*` duplicata;
+  aggiunto `README.md`.
+
 ## 2026-11-27 — Revisione della specifica
 
 - Autenticazione: secondo fattore obbligatorio e registrazione pubblica chiusa (ADR-0002 aggiornata, §3.4,
